@@ -1,9 +1,7 @@
 {
-  "main": "ecosystem.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "pm2-runtime start ecosystem.config.js --env production"
-
+    "start": "pm2-runtime start ecosystem.config.js --env production"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +12,7 @@
     "fs": "0.0.1-security",
     "moment": "^2.29.1",
     "mongoose": "^5.11.18",
+    "pm2": "^5.1.1",
     "request": "^2.88.2"
   }
 }
