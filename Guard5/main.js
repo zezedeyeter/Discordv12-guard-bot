@@ -103,11 +103,6 @@ var sagTikRolKoruma = [],
   islemSuresi = 1000 * 60 * 10;
 ///-----------------------------------------------------------------------------------------------------------------------------------------------//
 client.on("roleDelete", async (role) => {
-  new silinenroller({
-    roleid: role.id,
-    rolename: role.name,
-    Tarih: Date.now()
-  }).save()
   if (!entry || !entry.executor || Date.now() - entry.createdTimestamp > 5000 || güvenli1(entry.executor.id) || güvenli2(entry.executor.id)) return;
   if (!ayarlar.PROTECTROLS.includes(role.id)) return;
   Punish(entry.executor.id, "ban");
