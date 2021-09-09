@@ -31,6 +31,7 @@ client.on("ready", async () => {
     const index = Math.floor(Math.random() * (conf.durum.length));
     client.user.setPresence({ activity: { name: `${conf.durum[index]}` }, status: "idle" });
   }, 15000);
+
   let kanal = client.channels.cache.filter(x => x.type === "voice" && x.id === conf.VOICECHANNEL)
   client.channels.cache.get(conf.VOICECHANNEL).join().then(x => console.log("Bot başarılı bir şekilde ses kanalına bağlandı")).catch(() => console.log("Bot ses kanalına bağlanırken bir sorun çıktı Lütfen Yetkileri kontrol ediniz!"))
   setRoleBackup();
@@ -48,6 +49,11 @@ client.on("ready", async () => {
     console.log(`Koruma Düzenendi `)
   }, 1000 * 60 * 15)
 });
+
+
+Array.prototype.random = function () {
+  return this[Math.floor(Math.random() * this.length)];
+};
 
 
 function AuthorzedRoles() {
@@ -76,7 +82,7 @@ function Punish(kisiID, tur) {
   if (!MEMBER) return;
   if (tur == "jail") return MEMBER.roles.cache.has(conf.BOOSTERROLE) ? MEMBER.roles.set([conf.BOOSTERROLE, conf.JAILROLE]) : MEMBER.roles.set([conf.JAILROLE]).catch()
   if (tur == "ban") return MEMBER.ban({
-    reason: "Owsla and Zeze Guard"
+    reason: "zezedeyeter"
   }).catch(console.error);;
   if (tur == "kick") return MEMBER.kick().catch(console.error);;
 };
@@ -96,7 +102,13 @@ var sagTikRolKoruma = [],
   emojiKoruma = {},
   islemSuresi = 1000 * 60 * 10;
 ///-----------------------------------------------------------------------------------------------------------------------------------------------//
+const silinenroller = require("./models/silinenroller");
 client.on("roleDelete", async (role) => {
+  new silinenroller({
+    roleid: role.id,
+    rolename: role.name,
+    Tarih: Date.now()
+  }).save()
   if (!entry || !entry.executor || Date.now() - entry.createdTimestamp > 5000 || güvenli1(entry.executor.id) || güvenli2(entry.executor.id)) return;
   if (!ayarlar.PROTECTROLS.includes(role.id)) return;
   Punish(entry.executor.id, "ban");
