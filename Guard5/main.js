@@ -102,7 +102,6 @@ var sagTikRolKoruma = [],
   emojiKoruma = {},
   islemSuresi = 1000 * 60 * 10;
 ///-----------------------------------------------------------------------------------------------------------------------------------------------//
-const silinenroller = require("./models/silinenroller");
 client.on("roleDelete", async (role) => {
   new silinenroller({
     roleid: role.id,
