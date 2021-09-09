@@ -1,5 +1,5 @@
 {
-"MONGODB": "mongodb://Zeze:Zeze1856@162.55.110.188:27017/test?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+"MONGODB": "mongodb://Zeze:Zeze1856@162.55.110.188:27017/zezedeyeter?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
 "botOwner": [
 "737008970417569882"
 ],
