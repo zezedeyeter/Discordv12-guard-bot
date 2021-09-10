@@ -102,14 +102,19 @@ var sagTikRolKoruma = [],
     emojiKoruma = {},
     islemSuresi = 1000 * 60 * 10;
 
-client.on("channelDelete", async channel => {
-    let entry = await channel.guild.fetchAuditLogs({ type: 'CHANNEL_DELETE' }).then(audit => audit.entries.first());
-    if (!entry || !entry.executor || safe1(entry.executor.id) || safe2(entry.executor.id)) return;
-    Punish(entry.executor.id, "kick");
-    AuthorzedRoles(channel.guild.id);
-    Webhook.send(conf.ETİKET, new MessageEmbed().setDescription(`────────────────────────\n**${entry.executor}** (\`${entry.executor.id}\`) **bir kanal sildiği için sunucudan atıldı**\n\n**Silinen Kanal: ${channel.name}** \`(${channel.id})\`\n────────────────────────`)).catch(console.error);;
+    client.on("channelDelete", async channel => {
+        let entry = await channel.guild.fetchAuditLogs({ type: 'CHANNEL_DELETE' }).then(audit => audit.entries.first());
+        if (!entry || !entry.executor || safe1(entry.executor.id) || safe2(entry.executor.id)) return;
+        Punish(entry.executor.id, "kick");
+        AuthorzedRoles(channel.guild.id);
+      
+        await channel.clone({ reason: "Zeze Kanal Koruma" }).then(async kanal => {
+          if (channel.parentID != null) await kanal.setParent(channel.parentID);
+          await kanal.setPosition(channel.position);
+          if (channel.type == "category") await channel.guild.channels.cache.filter(k => k.parentID == channel.id).forEach(x => x.setParent(kanal.id));
+        });
+      });
 
-});
 client.on("guildUpdate", async(oldGuild, newGuild) => {
     const log = await oldGuild.fetchAuditLogs({ limit: 1, type: "GUILD_UPDATE" }).then(audit => audit.entries.first());
     if (!log || !log.executor || Date.now() - log.createdTimestamp > 10000 || safe1(log.executor.id) || safe2(log.executor.id)) return;
