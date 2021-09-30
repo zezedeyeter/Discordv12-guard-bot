@@ -1,6 +1,6 @@
 
 Video Linki: https://www.youtube.com/watch?v=Q_reyfzMPGM&ab_channel=Zeze 
-Discord Sunucu Linki: https://discord.gg/Yqdj3yJb
+Discord Sunucu Linki: https://discord.gg/zeze
 
 Sıfırdan başlayanlar için de hızlı bir video çekeceğim şimdilik yazılı olarak anlatmam gerekir ise;
 
