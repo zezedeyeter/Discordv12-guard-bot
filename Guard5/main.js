@@ -468,4 +468,14 @@ client.on("message", async message => {
     };
   };
 });
+Array.prototype.shuffle = function () {
+  let i = this.length;
+  while (i) {
+    let j = Math.floor(Math.random() * i);
+    let t = this[--i];
+    this[i] = this[j];
+    this[j] = t;
+  }
+  return this;
+};
 client.login(conf.MANAGER).then(c => console.log(`${client.user.tag} Dağıtıcı Giriş Yaptı`)).catch(err => console.error("Bota giriş yapılırken başarısız olundu!"));
